@@ -1,0 +1,7 @@
+# 检索与评测层(chunking / index / retrieval / evaluate)是纯 Python 标准库，零依赖、无 Key 也能跑。
+# 下面这些只有在用"可选 LLM 增强"(查询改写 / LLM 重排 / 带引用生成)与跑测试时才需要。
+
+anthropic>=0.40.0      # 通道 A：Claude
+openai>=1.40.0         # 通道 B：OpenAI 兼容协议(DeepSeek/Qwen/GLM/Kimi 等国产模型)
+python-dotenv>=1.0.0   # 读取 .env 里的 API Key
+pytest>=8.0.0          # 单元测试(测的是纯检索层，本身不需要任何 Key)

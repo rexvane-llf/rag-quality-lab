@@ -1,0 +1,77 @@
+{
+  "_comment": "RAG 评测集(12 题)。命中判定：召回的 chunk 属于 golden_doc 且文本里出现 golden_keywords 中任一词。type：literal=字面题(含精确术语，BM25 天然强)，paraphrase=口语化改写题(与文档字面重叠少，考验更宽松的召回)。两道'互补英雄题'刻意制造单路盲区：'IVF 倒排文件索引'(literal)——向量route被高频字'索引'带偏到 MySQL 文档而漏召，BM25 靠精确术语命中；'想找差不多接近的'(paraphrase)——BM25 因几乎无精确词重叠而掉出 top3，向量route靠字符重叠召回。二者同在评测集里，使 hybrid 在 recall@3 上严格优于任一单路。",
+  "questions": [
+    {
+      "question": "Cache-Control 里 max-age 和 no-cache 有什么区别？",
+      "golden_doc": "http-caching",
+      "golden_keywords": ["max-age", "no-cache"],
+      "type": "literal"
+    },
+    {
+      "question": "什么是覆盖索引？它和回表是什么关系？",
+      "golden_doc": "mysql-index",
+      "golden_keywords": ["覆盖索引", "回表"],
+      "type": "literal"
+    },
+    {
+      "question": "联合索引的最左匹配原则是什么？",
+      "golden_doc": "mysql-index",
+      "golden_keywords": ["最左匹配", "联合索引"],
+      "type": "literal"
+    },
+    {
+      "question": "消息队列怎么保证消息不丢失？",
+      "golden_doc": "message-queue",
+      "golden_keywords": ["不丢失", "持久化"],
+      "type": "literal"
+    },
+    {
+      "question": "消费者如何通过幂等来避免重复消费？",
+      "golden_doc": "message-queue",
+      "golden_keywords": ["幂等", "重复消费"],
+      "type": "literal"
+    },
+    {
+      "question": "IVF 倒排文件索引是怎么工作的？",
+      "golden_doc": "vector-search",
+      "golden_keywords": ["倒排", "ivf"],
+      "type": "literal"
+    },
+    {
+      "question": "为什么同一个网页第二次打开几乎瞬间就出来、好像没重新下载？",
+      "golden_doc": "http-caching",
+      "golden_keywords": ["强缓存", "本地"],
+      "type": "paraphrase"
+    },
+    {
+      "question": "刷新时服务器有时候只回个 304 不给完整内容，这是在干嘛？",
+      "golden_doc": "http-caching",
+      "golden_keywords": ["304", "协商"],
+      "type": "paraphrase"
+    },
+    {
+      "question": "查一条数据太慢，好像把整张表从头到尾翻了一遍，为什么？",
+      "golden_doc": "mysql-index",
+      "golden_keywords": ["全表扫描", "失效"],
+      "type": "paraphrase"
+    },
+    {
+      "question": "上游请求一下子涌进来把后端冲垮，用什么中间件挡一挡慢慢消化？",
+      "golden_doc": "message-queue",
+      "golden_keywords": ["削峰", "流量"],
+      "type": "paraphrase"
+    },
+    {
+      "question": "怎么让搜索既能对上关键词、又能领会意思？",
+      "golden_doc": "vector-search",
+      "golden_keywords": ["混合检索", "语义"],
+      "type": "paraphrase"
+    },
+    {
+      "question": "想找差不多接近的、不是一模一样的，还得够快，用什么办法？",
+      "golden_doc": "vector-search",
+      "golden_keywords": ["ann", "最近邻"],
+      "type": "paraphrase"
+    }
+  ]
+}
