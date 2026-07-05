@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-quality-lab"
+version = "0.1.0"
+description = "能量化测量自身检索质量的教学级 RAG 实验台：切分×检索×可选重排的 recall@k / MRR / 延迟对比评测"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "RexVane" }]
+requires-python = ">=3.10"
+keywords = ["rag", "retrieval", "evaluation", "bm25", "llm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Indexing",
+]
+# 检索与评测层是纯 Python 标准库，核心零依赖
+dependencies = []
+
+[project.optional-dependencies]
+# 可选 LLM 增强：查询改写 / LLM 重排 / 带引用生成
+llm = [
+    "anthropic>=0.40.0",
+    "openai>=1.40.0",
+    "python-dotenv>=1.0.0",
+]
+dev = ["pytest>=8.0.0"]
+
+[project.urls]
+Homepage = "https://github.com/RexVane/rag-quality-lab"
+Issues = "https://github.com/RexVane/rag-quality-lab/issues"
+
+[tool.setuptools]
+packages = ["lab"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

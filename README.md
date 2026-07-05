@@ -1,5 +1,9 @@
 # rag-quality-lab — 能量化测量自身检索质量的教学级 RAG 实验台
 
+[![CI](https://github.com/RexVane/rag-quality-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/RexVane/rag-quality-lab/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
+
 > 这不是"又一个 Chat-with-PDF"。它的卖点是**用数据回答"我的检索到底准不准"**：
 > 同一批文档、同一组带 golden 标注的问题，一键对比
 > **切分策略(3) × 检索策略(3) × 可选 LLM 重排** 的 recall@3 / MRR / 延迟，产出 markdown 对比报告。
